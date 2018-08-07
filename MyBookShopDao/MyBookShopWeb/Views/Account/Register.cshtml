@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+@model MyBookShopDao.Model.User
+@using (Html.BeginForm())
+{
+    <div style=" float:left;margin-top:20px;margin-left:20px;">
+        <img src="~/Images/register.gif"/>
+        <table style="font-size:16px;">
+            <tr><td><span>*</span>用户名:</td><td>@Html.TextBoxFor(m=>m.LoginId)</td><td><span>@Html.ValidationMessageFor(m=>m.LoginId)</span></td></tr>
+            <tr><td><span>*</span>真实姓名:</td><td>@Html.TextBoxFor(m=>m.Name)</td><td><span>@Html.ValidationMessageFor(m=>m.Name)</span></td></tr>
+            <tr><td><span>*</span>密码:</td><td>@Html.PasswordFor(m=>m.LoginPwd)</td><td><span>@Html.ValidationMessageFor(m=>m.LoginPwd)</span></td></tr>
+            <tr><td><span>*</span>确认密码:</td><td>@Html.PasswordFor(m=>m.ConfirmPassword)</td><td><span>@Html.ValidationMessageFor(m=>m.ConfirmPassword)</span></td></tr>
+            <tr><td><span>*</span>电子邮件:</td><td>@Html.TextBoxFor(m=>m.Mail)</td><td><span>@Html.ValidationMessageFor(m=>m.Mail)</span></td></tr>
+            <tr><td><span>*</span>地址:</td><td>@Html.TextBoxFor(m=>m.Address)</td><td><span>@Html.ValidationMessageFor(m=>m.Address)</span></td></tr>
+            <tr><td><span>*</span>手机:</td><td>@Html.TextBoxFor(m=>m.Phone)</td><td><span>@Html.ValidationMessageFor(m=>m.Phone)</span></td></tr>
+            <tr><td><span>*</span>验证码:</td><td>@Html.TextBox("Code")<span id="msg"></span><img src="@Url.Action("ValidateCode")" id="imgCode" /></td></tr>
+            <tr><td colspan="2" style="text-align:right;"><input type="submit" value="确认了，马上提交" /></td></tr>
+        </table>
+        <div style="margin-left:50px;font-size:12px;">
+            <p style="color:#CCCCCC;">加<span>*</span>为必填项目</p>
+            <p>@Html.ActionLink(">已经有账号,马上登录", "Login", "Account", null,new { style="text-decoration:none;"})</p>
+            <p style="color:#CCCCCC;">>如果你已经有"第三波社区"账号,请 @Html.ActionLink("点这里", "Login", "Account", null, new { style="text-decoration:none;"}) 登录</p>
+        </div>
+    </div>
+}
+
+@section script{
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#imgCode").click(function () {
+                $(this).attr("src", "/Account/ValidateCode?date=" + new Date);
+            });
+
+            $("#Code").blur(function () {
+                $.post("/Account/Check", { code: $(this).val() }, function (data) {
+                    if (data == "false") {
+                        $("#msg").text("验证码不正确");
+                    } else {
+                        $("#msg").text("验证码正确");
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<style>
+    span
+    {
+        color:red;
+    }
+    table tr td
+    {
+        font-size:12px;
+        line-height:30px;
+    }
+</style>

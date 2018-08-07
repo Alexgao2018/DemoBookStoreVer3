@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+
+@using MyBookShopDao.Model
+@model Book
+
+
+<div style="width:702px;float:left;margin-left:10px;">
+
+<h2 style="margin-left:20px;">@Model.Title</h2>
+<p style="margin-left:40px;">书籍分类：@Model.Category.Name  &nbsp;  &nbsp;  &nbsp; 正在阅读（@Model.Clicks），已经阅读（4520） <a href="#">放入书架</a> <a href="#">什么是书架？</a></p>
+<hr style="width:700px;"/>
+
+<div style="width:200px;height:250px;float:left;margin-left:10px;">
+    <img src="/Images/BookCovers/@(Model.ISBN+".jpg")" alt="" style="width:200px; height:250px;"/>
+</div>
+@using (Html.BeginForm("AddCart", "ShoppingCart","post"))
+{
+<div style="width:480px;float:left;margin:5px;">
+    <table style="width:479px;">
+         <tr><td colspan="2">作者：@Model.Author</td><td><input type="hidden" name="id" value="@Model.Id" /></td></tr>
+         <tr><td colspan="2">出版社：@Model.Publisher.Name</td></tr>
+         <tr><td>出版时间：@Model.PublishDate.ToString("yyyy-MM-dd")</td><td>字数：</td></tr>
+         <tr><td>版次：</td><td>页数：</td></tr>
+         <tr><td>印刷时间：</td><td>开本：</td></tr>
+         <tr><td>印次：</td><td>纸张：</td></tr>
+         <tr><td>I S B N : @Model.ISBN</td><td>包装：平装</td></tr>
+         <tr><td>定价:<label style="color:Red;line-height:30px;">@("￥"+Model.UnitPrice.ToString("0.00"))</label></td><td></td></tr>
+         <tr><td>送积分：<label style="color:Red;">@Model.ISBN.Substring(0, 2)</label>&nbsp;<a href="#">积分说明</a></td></tr>
+         <tr><td><input type="submit" style="background-image:url('/Images/btn_goumai.gif');width:69px; height:22px;" value="" /></td></tr>
+    </table>
+</div>
+}
+<div style="clear:both;"></div>
+<hr style="width:700px;"/>
+<h3 style="margin-left:20px;"><img src="/Images/arrow_02.gif" />内容提要</h3>
+<p style="width:650px;margin-left:20px;">@Model.ContentDescription</p>
+
+<h3 style="margin-left:20px;"><img src="/Images/arrow_02.gif" />目录</h3>
+<hr style="width:700px;"/>
+<p style="margin-left:20px;">
+@if (Model.TOC.Length > 200)
+{
+    Model.TOC = Model.TOC.ToString().Substring(0, 260) + "...";
+}
+@Html.Raw(Model.TOC)
+</p>
+</div>
+<div style="clear:both;"></div>
+

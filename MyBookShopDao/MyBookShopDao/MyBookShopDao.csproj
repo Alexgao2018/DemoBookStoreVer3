@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{691532D6-2503-40B0-A807-3EFC889055D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyBookShopDao</RootNamespace>
+    <AssemblyName>MyBookShopDao</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\BookManager.cs" />
+    <Compile Include="BLL\CategoryManager.cs" />
+    <Compile Include="BLL\OrderManager.cs" />
+    <Compile Include="BLL\PublisherManager.cs" />
+    <Compile Include="BLL\ShoppingCar.cs" />
+    <Compile Include="BLL\UserManager.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DAL\BookDAL.cs" />
+    <Compile Include="DAL\CategoryDAL.cs" />
+    <Compile Include="DAL\DBHelper.cs" />
+    <Compile Include="DAL\OrderDAL.cs" />
+    <Compile Include="DAL\OrderDetailDAL.cs" />
+    <Compile Include="DAL\PublisherDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="Model\Book.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BookRating.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Category.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyBookShop.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyBookShop.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyBookShop.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyBookShop.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyBookShop.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Order.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrderDetail.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Publisher.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ReaderComment.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RecomBook.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SearchKeyword.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TemporaryCart.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserRole.cs">
+      <DependentUpon>MyBookShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ViewModel\CartItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model\MyBookShop.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyBookShop.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Model\MyBookShop.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyBookShop.edmx</DependentUpon>
+      <LastGenOutput>MyBookShop.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\MyBookShop.edmx.diagram">
+      <DependentUpon>MyBookShop.edmx</DependentUpon>
+    </None>
+    <None Include="Model\MyBookShop.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyBookShop.edmx</DependentUpon>
+      <LastGenOutput>MyBookShop.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

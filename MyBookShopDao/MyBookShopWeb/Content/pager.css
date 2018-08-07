@@ -1,0 +1,15 @@
+﻿div.pager a{
+    margin:3px;
+    text-decoration: none;
+    border:solid 1px gray;
+    padding:1px 3px;
+}
+div.pager span.current{
+    padding:1px 3px;
+    margin:3px;
+    background-color: gray;
+    color: white;
+}
+div.pager span.pageInfo{
+    margin-left:10px;
+}

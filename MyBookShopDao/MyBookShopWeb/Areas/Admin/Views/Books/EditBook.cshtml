@@ -1,0 +1,79 @@
+﻿@model MyBookShopDao.Model.Book
+@{
+    ViewBag.Title = "EditBook";
+}
+
+@section Scripts
+{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    
+}
+
+@using (Html.BeginForm("EditBook", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<table border="1">
+    <tr>
+        <td>标题</td>
+        <td>@Html.EditorFor(model => model.Title)</td>
+    </tr>
+    <tr>
+        <td>封面</td>
+        <td><img src="@Url.Content("~/Images/BookCovers/"+Model.ISBN+".jpg")"  style="width:130px;height:160px; float:left;"/><input type="file" name="file"/></td>
+    </tr>
+    <tr>
+        <td>定价</td>
+        <td>@Html.EditorFor(model => model.UnitPrice)</td>
+    </tr>
+    <tr>
+        <td>出版社</td>
+        <td>@Html.DropDownListFor(m=>m.PublisherId,ViewBag.PublisherList as SelectList)</td>
+    </tr>
+    <tr>
+        <td>分类</td>
+        <td>@Html.DropDownListFor(m=>m.CategoryId,ViewBag.CateList as SelectList)</td>
+    </tr>
+    <tr>
+        <td>作者</td>
+        <td>@Html.EditorFor(model => model.Author)</td>
+    </tr>
+    <tr>
+        <td>ISBN</td>
+        <td>@Html.EditorFor(model => model.ISBN)</td>
+    </tr>
+    <tr>
+        <td>出版日期</td>
+        <td>@Html.EditorFor(model => model.PublishDate)</td>
+    </tr>
+    <tr>
+        <td>目录</td>
+        <td>
+            @Html.TextArea("TOC")
+            <script type="text/javascript">
+                CKEDITOR.replace("TOC")
+            </script>
+        </td>
+    </tr>
+    <tr>
+        <td>内容摘要</td>
+        <td>
+            
+            @Html.TextArea("ContentDescription")
+           <script type="text/javascript">
+               CKEDITOR.replace("ContentDescription")
+           </script>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="submit" value="保存" /></td>
+    </tr>
+</table>
+}
+<style>
+    table
+    {
+        margin-left:40px;
+        background-color:#d9f5f0;
+        width:95%;
+        margin-top:20px;
+    }
+</style>

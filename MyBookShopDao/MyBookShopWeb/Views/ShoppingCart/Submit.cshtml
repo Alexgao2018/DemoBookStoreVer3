@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Submit";
+}
+@using MyBookShopDao.Model;
+@using MyBookShopDao.BLL;
+@model ShoppingCar
+
+<table>
+    <tr>
+        <td style="background-color:#bbeded;color:white;text-align:center" colspan="4">订单确认</td>
+    </tr>
+    <tr>
+        <th>图书</th>
+        <th>单价</th>
+        <th>输量</th>
+        <th>小计</th>
+    </tr>
+    @foreach(var item in Model.Items){
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Price.ToString("C")</td>
+            <td>@item.Quantity</td>
+            <td>@item.SubTotal.ToString("C")</td>
+        </tr>
+    }
+    
+    @using(Html.BeginForm("Submit","ShoppingCart")){
+    <tr>
+        <td colspan="4" style="text-align:right;"><input type="hidden" name="TotalPrice" value="@Model.Total">合计：@Model.Total.ToString("C")</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <h2>送货信息</h2>
+            <span style="margin-left:40px;">收货联系人：<input type="text" name="Receiver" value="@(((MyBookShopDao.Model.User)Session["user"]).Name)"/><br /></span>
+            <span style="margin-left:56px;">收货地址：<input type="text" name="DeliveryAddress" value="@(((MyBookShopDao.Model.User)Session["user"]).Address)"/><br /></span>
+            <span style="margin-left:56px;">收货电话：<input type="text" name="ContactPhone" value="@(((MyBookShopDao.Model.User)Session["user"]).Phone)"/><br /></span>
+        </td>
+       
+    </tr>
+    <tr>
+        <td colspan="4">
+            <input type="submit" value="确认购买" style="width:80px;" />|<a href="/Home/Index">回到首页</a>
+        </td>
+    </tr>
+     }
+</table>
+<style>
+    table
+    {
+        margin-left:40px;float:left;width:70%;font-size:14px;border:1px solid #cccccc;
+        
+    }
+    table tr td
+    {
+        border-bottom:1px solid #cccccc;
+        line-height:30px;
+    }
+    input
+    {
+        width:400px;
+    }
+</style>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MyBookShopDao.Model.Order>
+
+@{
+    ViewBag.Title = "List";
+}
+@if (IsAjax)
+{
+    Layout = null;
+}
+    
+<div  id="result" style="margin-left:20px;">
+@using (Ajax.BeginForm("List",new AjaxOptions { UpdateTargetId = "result" }))
+        {
+    <table>
+        <tr>
+            <td>
+                @if (ViewBag.IsDelivered == 1)
+                {
+                    <input type="checkbox" name="IsDelivered" value="1" checked="checked"/>
+                }
+                else
+                {
+                    <input type="checkbox" name="IsDelivered" value="1"/>
+                }
+                是否发货</td>
+            <td>订单编号：<input type="text" name="orderid" value="@ViewBag.Orderid"/></td>
+        </tr>
+        <tr>
+            <td>开始日期：<input type="text" name="start" value="@ViewBag.Start" /></td>
+            <td>结束日期：<input type="text" name="end" value="@ViewBag.End"/></td>
+            <td><input type="submit" value="查询"/></td>
+        </tr>
+    </table>
+}
+<table style="width:750px;">
+    <tr>
+       <td>订购日期</td>
+       <td>总金额</td>
+       <td>收货地址</td>
+       <td>联系电话</td>
+       <td>收货人</td>
+       <td>是否发货</td>
+       <td>查看明细</td>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receiver)
+        </td>
+        <td>
+            @(item.IsDelivered==true?"是":"否")
+        </td>
+        <td>
+            @Html.ActionLink("查看明细", "Details", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+</table>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

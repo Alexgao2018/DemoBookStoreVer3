@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+@model List<MyBookShopDao.Model.Book> 
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+     <script type="text/javascript">
+         $(function () {
+             $("#date").val("@Session["PublishDate"]");
+                 $("#date").change(function () {
+                     window.location.href = "/Books/List?cid=@Session["CId"]&pageIndex=@ViewBag.PageIndex&PublishDate=" + $(this).val() + "&title=@Session["Btitle"]";
+                 });
+          });
+      </script>
+<div style="width:1000px;">
+<div style="width:800px;float:right;border:1px solid #CCCCCC;">
+排序方式:
+        <select id="date" style="margin-top:10px;">
+            <option value="PublishDate">按出版日期排序</option>
+            <option value="UnitPrice">按价格排序</option>  
+        </select>
+    
+    <div style="margin-left:15px;margin-top:30px;">
+        @foreach (var b in Model)
+        {
+            <img src="@Url.Content("~/Images/BookCovers/" + b.ISBN + ".jpg")"  style="width:140px;height:210px; float:left;"/>
+            <div style="float:left; width:630px; margin-left:5px;">
+                <h3>@Html.ActionLink(@b.Title, "Details", "Books", new { id = b.Id }, new { style = "text-decoration:none;" })</h3>
+                <p>@b.Author</p>
+        
+            <p style="font-size:14px;">@MyBookShopWeb.Models.StringHelper.CutString(@b.ContentDescription, 200)</p>
+            <p style="float:right;">价格:<span style="color:red">￥@b.UnitPrice</span></p> 
+            <input type="hidden" name="id" value="@b.Id" />
+            </div>
+            <p style="border-bottom:2px solid #cccccc;clear:both;width:770px;"></p>
+        }
+        <div style="float:right;">
+       共 @ViewBag.PageCount 页&nbsp;&nbsp;当前第 @ViewBag.PageIndex 页 &nbsp;&nbsp;共 @Session["rowCount"] 条
+       <form action="List" method="post" style="display:inline;">
+            <input type="text"    value="@ViewBag.PageIndex" name="pageIndex" style="width:50px;"/>
+            <input type="hidden"  value="@Session["CId"]" name="cid"/>
+            <input type="hidden"  value="@Session["title"]" name="title"/>
+            <input type="hidden"  value="@Session["PublishDate"]" name="PublishDate"/>
+            <input type="submit"  value="Go"/>
+       </form>
+        @if (ViewBag.PageIndex > 1)
+        {
+             @Html.ActionLink("上一页", "List", new { cid = Session["CId"], pageIndex = (ViewBag.PageIndex - 1), PublishDate = Session["PublishDate"], title = Session["Btitle"] }, null);
+        }
+        else
+        {
+            <a>上一页</a>
+        }
+        &nbsp;
+        @if (ViewBag.PageIndex < ViewBag.PageCount)
+        {
+             @Html.ActionLink("下一页", "List", new { cid = Session["CId"], pageIndex = (ViewBag.PageIndex + 1), PublishDate = Session["PublishDate"], title = Session["Btitle"] }, null);
+        }
+        else
+        {
+            <a>下一页</a>
+        }
+    </div>
+ </div>
+</div>
+</div>
+
+

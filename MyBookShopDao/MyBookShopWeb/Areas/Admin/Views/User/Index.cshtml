@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model List<MyBookShopDao.Model.User>
+<form id="form1" method="post" action="/Admin/User/UpdateState">
+<div id="userList" style="margin-left:40px;">
+    <p style="margin:0px;"><input type="button" value="启用" isUser="true" class="btn1"/>&nbsp;|&nbsp;<input type="button" value="禁用" isUser="false" class="btn1"/>
+        <input  type="hidden" name="isUser" id="isUser"/>
+    </p>
+    <table border="1" style="border-collapse:collapse;width:100%;">
+        <tr>
+            <th><input type="checkbox" id="allCheckBox" onclick="selectAll()" />全选</th>
+            <th>登录名</th>
+            <th>真实姓名</th>
+            <th>电话</th>
+            <th>Email</th>
+            <th>角色</th>
+            <th>状态</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td><input type="checkbox" value="@m.Id"  name="ids" /></td>
+                <td>@m.LoginId</td>
+                <td>@m.Name</td>
+                <td>@m.Phone</td>
+                <td>@m.Mail</td>
+                <td>@m.UserRole.Name</td>
+                @if(@m.UserState==true){
+                    <td>启用</td>
+                }else{
+                    <td>禁用</td>
+                }
+                <td><a href="/Admin/User/Update?id=@m.Id">编辑</a></td>
+                <td><a href="javascript:delUser(@m.Id)">删除</a></td>
+            </tr>
+        }
+    </table>
+</div>
+</form>
+@section Scripts {
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+<script type="text/javascript">
+    function selectAll() {
+        var cartCheckBox = document.getElementsByName("ids");
+        for (var i = 0; i < cartCheckBox.length; i++) {
+            cartCheckBox[i].checked = document.getElementById("allCheckBox").checked;
+        }
+    }
+    function delUser(op) {
+        if (confirm("你确定要删除用户吗？") == true) {
+            location.href = "/Admin/User/Delete?id=" + op;
+        }
+    }
+    $(function () {
+        $(".btn1").click(function () {
+            $("#isUser").val($(this).attr("isUser"));
+            $("#form1").submit();
+        });
+    })
+</script>
+    
+    }

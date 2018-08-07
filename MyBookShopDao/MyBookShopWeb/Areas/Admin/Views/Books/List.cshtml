@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+@using MyBookShopWeb.Models;
+@model List<MyBookShopDao.Model.Book>
+
+<script>
+    function f1(op) {
+        if (confirm("你确定要删除吗?") == true) {
+            location.href = "Delete?id=" + op;
+        }
+    }
+</script>
+@using (Html.BeginForm("List","Books","post")) {
+<div style="margin-left:50px; font-size:12px;">
+    
+    <p>检索类别:
+        <select name="title">
+            <option value="书名" @(ViewBag.Btitle=="书名"?"selected='selected'":"")>书名</option>
+            <option value="出版社" @(ViewBag.Btitle=="出版社"?"selected='selected'":"")>出版社</option>
+            <option value="作者" @(ViewBag.Btitle=="作者"?"selected='selected'":"")>作者</option>
+            <option value="内容简介" @(ViewBag.Btitle=="内容简介"?"selected='selected'":"")>内容简介</option>
+        </select>
+        关键字:
+        <input type="text" name="term" value="@Session["term"]"/><input type="submit" value="查询" />
+        &nbsp;&nbsp;@Html.ActionLink("添加书籍", "", "", null, null)
+    </p>
+   
+    <table>
+        <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>类别</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var b in Model)
+        {
+        <tr>
+            <td style="width:40%">@Html.ActionLink(@b.Title, "", "", null, null)</td>
+            <td style="width:20%">@b.Author</td>
+            <td style="width:20%">@b.Category.Name</td>
+            <td style="width:10%"><a href="javascript:f1(@b.Id);">删除</a></td>
+            <td style="width:10%">@Html.ActionLink("编辑", "EditBook", "Books", new { id=b.Id}, null)</td>
+        </tr>
+        }
+    </table>
+    @Html.Pager(new PagerInfo(10,(int)ViewBag.PageNo,(int)ViewBag.RowCount),10)
+</div>
+}
+<style>
+    table
+    {
+        border:1px solid #808080;
+        width:100%;
+        text-align:center;
+        line-height:40px;
+    }
+    table tr:hover
+    {
+        background-color:#0094ff;
+    }
+</style>
+<link href="~/Content/pager.css" rel="stylesheet" />

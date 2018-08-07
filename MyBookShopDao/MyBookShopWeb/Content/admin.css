@@ -1,0 +1,101 @@
+﻿body {
+    
+      background-color:#eee8e8;
+}
+a
+{
+   text-decoration:none;
+}
+#page
+{
+    width:1003px;
+    margin:0px auto;
+}
+#header
+{
+    height:92px;
+    background-image:url("/Images/admin_top.gif")
+}
+
+#main
+{
+    width:1003px;
+    clear:both;
+}
+#optlist
+{
+    float:left;
+    width:207px;
+    border-left:solid 2px #cfcbcb;
+    height:100%;
+}
+
+#juzhong
+{
+ clear:both;
+ margin-left:8px;
+ margin-top:20px;
+ 
+}
+#top
+{
+    width:193px;
+    height:50px;
+    background-image:url("/Images/admin_menu_t.gif")
+}
+#da
+{
+
+   padding-top:4px;
+   padding-left:27px;
+}
+#da h4
+    {
+     text-align:center;
+     width:150px;
+     border-bottom:solid 2px #cfcbcb;
+    }
+#box
+{
+     margin-top:-16px;
+     width:191px;
+     height:256px;
+     border-left:solid 1px #0094ff;
+     border-right:solid 1px #0094ff;
+     border-bottom:solid 1px #0094ff;
+     background-image:url("/Images/admin_menu_b.gif")
+}
+#optlist ul li
+{
+    list-style:none;
+    line-height:32px;
+    border-bottom:solid 2px #0094ff;
+    width:120px;
+}
+#optlist ul li a
+{
+    color:black;
+}
+#optaret
+{
+    border-left:solid 2px #cfcbcb;
+    width:788px;
+    float:left;
+    height:100%;
+}
+#breadcrumb
+{
+    margin-left:50px;
+    margin-top:20px;
+}
+ #breadcrumb a
+{
+    color:black;
+}
+#footer
+{
+    clear:both;
+    height:67px;
+    font-size:16px;
+    text-align:center;
+}

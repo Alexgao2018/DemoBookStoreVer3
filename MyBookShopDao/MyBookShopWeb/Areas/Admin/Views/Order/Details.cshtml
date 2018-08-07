@@ -1,0 +1,62 @@
+﻿@model MyBookShopDao.Model.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="margin-left:40px;">
+    <table>
+        <tr>
+            <td>送货信息</td>
+        </tr>
+        <tr>
+            <td>送货联系人:@Model.Receiver</td>
+        </tr>
+        <tr>
+            <td>送货地址:@Model.DeliveryAddress</td>
+        </tr>
+        <tr>
+            <td>联系电话:@Model.ContactPhone</td>
+        </tr>
+    </table>
+    <hr />
+    <h4>订单明细</h4>
+    <table style="width:700px;">
+        <tr>
+            <td style="width:350px;">图书</td>
+            <td>ISBN</td>
+            <td>单价</td>
+            <td>数量</td>
+            <td>小计</td>
+        </tr>
+        @foreach(var item in Model.OrderDetails)
+        {
+        <tr>
+            <td>@item.Book.Title</td>
+            <td>@item.Book.ISBN</td>
+            <td>@item.Book.UnitPrice</td>
+            <td>@item.Quantity</td>
+            <td>@(item.UnitPrice*item.Quantity)</td>
+        </tr>
+        }
+        <tr>
+            <td><input type="button" id="btn" @(Model.IsDelivered==true?"disabled='disabled'":"") value="确认发货" title="@Model.Id"/>|<a href="/Admin/Order/List">返回列表</a></td>
+        </tr>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn").click(function () {
+                $.post("/Admin/Order/Update", "id=" + $(this).attr("title"), function (data) {
+                    if (data == "ok") {
+                        alert("成功发货");
+                        location.href = "/Admin/Order/List";
+                    }
+                });
+            });
+        });
+    </script>
+}

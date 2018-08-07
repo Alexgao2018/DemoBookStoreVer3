@@ -1,0 +1,9 @@
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\bin\Debug\MyBookShopDao.dll.config
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\bin\Debug\MyBookShopDao.dll
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\bin\Debug\MyBookShopDao.pdb
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\bin\Debug\EntityFramework.dll
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\bin\Debug\EntityFramework.xml
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\obj\Debug\MyBookShopDao.dll
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\obj\Debug\MyBookShopDao.pdb
+E:\Y2\NET\ch09\MyBookShopDao\MyBookShopDao\obj\Debug\MyBookShopDao.csprojResolveAssemblyReference.cache

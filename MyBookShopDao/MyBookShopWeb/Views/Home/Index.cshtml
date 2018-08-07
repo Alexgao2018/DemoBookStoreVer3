@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+    <link href="@Url.Content("~/Content/layout.css")" rel="stylesheet" />
+}
+@model List<MyBookShopDao.Model.Book>   
+<div id="content">
+    <div id="contentS">
+        <img src="~/Images/a_b_02.jpg"/>
+    </div>
+    <p class="biaoqian"><a href="#">电子词典专柜上线</a>&nbsp;&nbsp;<a href="#">Lucy陪你说真人口语英语对译软件</a>&nbsp;&nbsp;<a href="#">哇~这东西真便宜，大家快来抢啊!</a></p>
+    <div id="contentB">
+           @foreach (var b in ViewData["listBook"] as List<MyBookShopDao.Model.Book>)
+            {
+                <div style="width:140px;float:left;text-align:center;">
+                    <img src="@Url.Content("~/Images/BookCovers/"+b.ISBN+".jpg")"  style="width:130px;height:160px; float:left;"/>
+                    
+                    <p style="clear:both;">@Html.ActionLink(@MyBookShopWeb.Models.StringHelper.CutString(@b.Title,15), "Details", "Books", new {id=b.Id }, null)</p>
+                   
+                    <p>价格:<span>￥@b.UnitPrice</span></p> 
+                </div>
+            }
+    </div>
+</div>
+    <div id="rightNav">
+    <div id="rightA">
+        <ul>
+            <li><a href="#">国庆期间货物延期配送公告</a></li>
+            <li><a href="#">北京货到付款订单取...</a></li>
+            <li><a href="#">第三波免费货物开通...</a></li>
+            <li><a href="#">第三波读书月精彩荟萃</a></li>
+        </ul>
+    </div>
+        <p style="font-size:12px; margin-left:10px;"><span>订单号：</span><input  type="text" style="width:70px;"/><input type="button" value="查询状态"/></p>
+       <div style="background-color:#caebe5;width:200px;height:85px; margin-top:15px;margin-left:10px;">  
+            <p style="float:left;"><img src="~/Images/QQ_01.gif" style="margin-left:10px;"/><img src="~/Images/QQ_02.gif"style="margin-left:10px;"/><img src="~/Images/QQ_02.gif"style="margin-left:10px;"/></p>
+            <p style="float:left;margin-top:-10px;"><img src="~/Images/taobao_01.gif" style="margin-left:10px;"/><img src="~/Images/taobao_02.gif" style="margin-left:10px;"/></p>
+       </div>
+    
+    <p id="sideTitle">热门点击排行</p>
+    <div id="rightC">
+        @foreach (var b in ViewData["listBook1"] as List<MyBookShopDao.Model.Book>)
+        {
+            <div style="width:180px;margin-left:6px;">
+                <p style="font-size:12px;height:9px; margin-left:10px;">@Html.ActionLink(@MyBookShopWeb.Models.StringHelper.CutString(@b.Title,15), "Details", "Books", new {id=b.Id }, null)</p>
+           </div>
+        }
+    </div>
+    <p id="sideTitle1">读者推荐</p>
+    <div id="rightD">
+        @foreach (var b in ViewData["Recom"] as List<MyBookShopDao.Model.Book>)
+        {
+            <div style="width:180px;margin-left:6px;">
+                 <p style="font-size:12px;height:9px; margin-left:10px;">@Html.ActionLink(@MyBookShopWeb.Models.StringHelper.CutString(@b.Title,15), "Details", "Books", new {id=b.Id }, null)</p>  
+            </div>
+        }
+    </div>
+</div>
+
+  

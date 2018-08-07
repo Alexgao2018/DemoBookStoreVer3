@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($("#optlist").css("height") > $("#optaret").css("height")) {
+                $("#optaret").css("height", $("#optlist").css("height"));
+            } else if ($("#optlist").css("height") < $("#optaret").css("height")) {
+                $("#optlist").css("height", $("#optaret").css("height"));
+            }
+
+        });
+    </script> 
+    @RenderSection("scripts",false)
+</head>
+<body>
+    <div id="page">
+         <div id="header"></div>
+         <div id="main">
+             <div id="optlist">
+                 <div id="juzhong">
+                 <div id="top">
+                     <div id="da"><h4><strong>管理员,你好!</strong></h4>
+                      </div>
+                 </div>
+                 <div id="box">
+                     <ul>
+                         <li><a href="/Admin/Order/List">订单管理</a></li>
+                         <li><a href="/Admin/User/Index">用户管理</a></li>
+                         <li><a href="#">用户状态管理</a></li>
+                         <li><a href="/Admin/Category/List">图书分类管理</a></li>
+                         <li><a href="/Admin/Books/List">图书管理</a></li>
+                         <li><a href="#">安全退出</a></li>
+                     </ul>
+               </div>
+              </div>
+             </div>
+             <div id="optaret">
+                 <div id="breadcrumb">
+                  你现在的位置:<a href="#">&nbsp;&nbsp;第三波></a><a href="#">&nbsp;管理员后台></a>
+                 </div>
+                 @RenderBody()</div>
+         </div>
+         <div id="footer">
+             <div style="padding-top:20px"><strong>Designed By 北大青鸟广州广力</strong></div>
+         </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <title>@ViewBag.Title </title>
+        <link href="@Url.Content("~/Content/layout.css")" rel="stylesheet" />
+          @RenderSection("style",false)
+          @RenderSection("script",false)
+        <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+        <script>
+            $(function () {
+                $("#img").click(function () {
+                    if ($("#sear").val() != "") {
+                        window.location.href = "/Books/List?title=" + $("#sear").val() + "&cid=@Session["CId"]&PublishDate=@Session["PublishDate"]";
+                    } else {
+                        alert("输入不能为空!!");
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="page">
+             <div id="header">
+               <div id="headerdao">
+                  <ul class="hleft">
+                   <li>
+                        @if (Session["user"] != null)
+                        {
+                            <text>你好，@(((MyBookShopDao.Model.User)Session["user"]).LoginId)。</text>
+                        }
+                       else
+                       {
+                            <text>你好，尊敬的客户。</text>
+                       }
+                       </li>
+                   <li>@Html.ActionLink("【登录】", "Login", "Account", null, null)</li>
+                   <li>&nbsp;&nbsp;@Html.ActionLink("【免费注册】", "Register", "Account", null, null)</li>
+                  </ul>
+                  <ul class="hright">
+                   <li><img  src="~/Images/payVIP.gif"/></li>
+                   <li><img  src="~/Images/payCoin.gif"/></li>
+                  </ul>
+               </div>
+                 <div id="hdrdao">
+                     <div id="tuz"><img  src="~/Images/logo.gif"/> </div>
+                     <div id="weny">
+                     <ul>
+                          <li>首页</li>
+                          <li>商讯</li>
+                          <li>个性化推荐</li>
+                          <li>在线客服</li>
+                          <li>积分兑换</li>
+                          <li>管理入口</li>
+                          <li>帮忙</li>
+                     </ul>
+                   </div>
+                 </div>
+            </div>
+            <div id="main">  
+                <div id="leftNav">
+                    <div id="gowu"><span id="ziti">目前你的购物车是空的</span></div>
+                    <div><input  id="sear" name="name" value="@Session["Btitle"]" style="width:140px;" /><img src="~/Images/search-sub.gif" id="img"/></div>
+                    <div id="feilei"><span class="feizi">查询所有分类>>>></span> </div>
+                    <div id="sub"> @{Html.RenderAction("CategoryTree", "Home");}</div>
+                    <div id="suxia"></div>
+                    <div id="xiala">
+                        <select>
+                            <option>>>根据出版社选择图书</option>
+                        </select>
+                        <select>
+                            <option>>>根据专题选择图书</option>
+                        </select>
+                    </div>
+                   <div id="lai">
+                        <a href="#">赖世雄美语从头学</a><br />
+                        <a href="#">沪江团够,价格更优惠</a>
+                   </div>
+                </div>
+                
+                        @RenderBody()
+                   
+                <div id="clear"></div>
+            </div>
+            <div id="footer">
+                  <div id="footZ">
+                 <ul>
+                   <li>热线<span>&nbsp;&nbsp;021-61508168</span>&nbsp;&nbsp;传真&nbsp;&nbsp;<span>021-61508168-8020</span></li> 
+                   <li>QQ &nbsp;&nbsp;<span>375013071 &nbsp;&nbsp;13483528&nbsp;&nbsp;1143735193 &nbsp;&nbsp;(技术)</span></li>
+                    <li>MSN&nbsp;&nbsp;<span>hjservice@hotmail.com</span>&nbsp;&nbsp;信箱&nbsp;&nbsp;<span>shop@hjengsh.com</span> </li>
+                    <li>帮忙&nbsp;&nbsp;银行汇款账户 &nbsp;&nbsp;邮局汇款地址&nbsp;&nbsp;送货方式及费用&nbsp;&nbsp;如何下载</li>
+                 </ul>
+                </div>
+                <div id="footY">
+                    <ul>
+                        <li><img src="~/Images/alipay.gif"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="~/Images/online_pay.gif"/></li>
+                        <li>网站介绍&nbsp;&nbsp;合作伙伴&nbsp;&nbsp;网站地址&nbsp;&nbsp;联系我们</li>
+                        <li>增值电信业务经营许可证</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

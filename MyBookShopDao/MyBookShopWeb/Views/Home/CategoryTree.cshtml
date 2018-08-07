@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "类别";
+    Layout = null;
+}
+@model List<MyBookShopDao.Model.Category>
+
+<ul>
+    @foreach (var c in Model)
+    { 
+     <li><img src="~/Images/arrow.gif" />@Html.ActionLink(@c.Name, "List", "Books", new { cid=@c.Id,title=@Session["Btitle"],PublishDate=@Session["PublishDate"]},new { style="text-decoration:none;"})</li>
+    }
+</ul>

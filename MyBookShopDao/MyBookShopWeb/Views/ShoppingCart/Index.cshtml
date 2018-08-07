@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@using MyBookShopDao.Model;
+@using MyBookShopDao.BLL;
+@model ShoppingCar
+
+<div id="CartDiv">
+     <div  style="width:680px;height:100px;background-image:url(/Images/basker.gif)">
+          <label style="float:right;margin-top:40px;font-size:14px;"> 全场运费一律2元 <a style="text-decoration:underline;"href="#">简易计算机</a></label>
+         <label style="float:left;margin-top:75px;margin-left:10px;">确认商品价格与交易条件</label>
+     </div>
+
+        <table id="CartTable">
+            <tr>
+                <th>图书标题</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>修改</th>
+                <th>删除</th>
+            </tr>
+           
+             @foreach (var item in Model.Items)
+              {
+                 <form action="/ShoppingCart/Update" method="post">
+                   <tr>
+                    <td>@item.Title</td>
+                    <td><label id="Price1">@item.Price.ToString("C")</label></td>
+                    <td><input  type="number" min="1" max="100" value="@item.Quantity" style="width:60px;" name="Quantity"/></td>
+                    <td>@item.SubTotal.ToString("C")</td>
+                    <td><input type="submit" value="修改">@Html.Hidden("id",item.Id)</td>
+                    <td>@Html.ActionLink("删除", "Delete", new { id=item.Id},new{ onclick="return confirm('确认删除吗？');"})</td>
+                 </tr>
+               </form>
+              }
+        </table>
+    <div id="drop">
+        <ul>
+            <li>@Html.ActionLink("继续挑选商品","Index","Home")</li>
+            <li>商品金额总计:@Model.Total.ToString("C")</li>
+            <li><a href="@Url.Action("Submit","ShoppingCart")"><img src="~/Images/basker_ok.gif" /></a></li>
+        </ul>
+    </div>
+    </div>
+
+<style>
+    #CartDiv
+    {
+        float:left;margin-top:20px;margin-left:20px;
+    }
+    #CartDiv p
+    {
+        font-size:12px;color:#808080;
+    }
+    #CartTable
+    {
+        margin-top:30px;
+        width:680px;
+        text-align:center;
+        border:none;
+        border-collapse:collapse;
+    }
+    #CartTable :first-child
+    {
+        height:30px;
+    }
+    #CartTable tr td
+    {
+        height:20px;
+        font-size:12px;
+        line-height:15px;
+    }
+    #drop
+    {
+        clear:both;
+        margin-left:100px;
+    }
+     #drop ul li
+    {
+         list-style:none;
+         margin-left:30px;
+         margin-top:20px;
+         float:left;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $("tr:even").css("background-color", "#ccc");
+        $("tr:odd").css("background-color", "#F9D78A");
+    });
+
+    function updatenum() {
+        var price = document.getElementById("Price1").innerText;
+        var num = document.getElementById("Quantitly1").value;
+        document.getElementById("total").innerText = price * num;
+    }
+</script>

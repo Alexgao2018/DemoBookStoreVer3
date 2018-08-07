@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+@model List<MyBookShopDao.Model.Category>
+
+@using (Html.BeginForm("AddCategory","Category","post")) {
+<div style="margin-left:50px; font-size:14px;">
+    <p style="font-weight:bold;">增加新分类:<input type="text" name="name" /><input type="submit" value="增加" /></p>
+    <table border="1" style="width:50%;">
+        <tr>
+            <td style="width:25%">分类名称</td>
+            <td style="width:25%">操作</td>
+        </tr>
+        @foreach (var c in Model)
+        { 
+            <tr>
+                 <td>@c.Name</td>
+                 <td><a href="javascript:f1(@c.Id);">删除</a></td>
+            </tr>
+        }
+    </table>
+</div>
+}
+<script>
+    function f1(op) {
+        if (confirm("你确定要删除吗?") == true) {
+            location.href = "Delete?id=" + op;
+        }
+    }
+</script>

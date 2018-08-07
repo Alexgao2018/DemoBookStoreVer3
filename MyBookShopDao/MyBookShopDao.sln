@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookShopDao", "MyBookShopDao\MyBookShopDao.csproj", "{691532D6-2503-40B0-A807-3EFC889055D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookShopWeb", "MyBookShopWeb\MyBookShopWeb.csproj", "{A81703FB-976D-42A5-BA8B-A999433B2A00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{691532D6-2503-40B0-A807-3EFC889055D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691532D6-2503-40B0-A807-3EFC889055D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691532D6-2503-40B0-A807-3EFC889055D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691532D6-2503-40B0-A807-3EFC889055D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A81703FB-976D-42A5-BA8B-A999433B2A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81703FB-976D-42A5-BA8B-A999433B2A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81703FB-976D-42A5-BA8B-A999433B2A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81703FB-976D-42A5-BA8B-A999433B2A00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
